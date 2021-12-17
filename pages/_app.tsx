@@ -3,6 +3,7 @@ import CommonHeader from "../src/CommonHeader";
 import useAuthUser from "../src/hook/useAuthUser";
 import Head from "next/head";
 import React from "react";
+import LoginViewModel from "../src/page/_login/LoginViewModel";
 function MyApp({ Component, pageProps }) {
   const isAuth = useAuthUser();
   return(
@@ -20,9 +21,9 @@ function MyApp({ Component, pageProps }) {
           {
               (isAuth)
               ?
-                  <Component {...pageProps} isAuth={isAuth} />
+              <Component {...pageProps} isAuth={isAuth} />
               :
-                  <div>Not our member</div>
+              <LoginViewModel/>
           }
       </>
   )
