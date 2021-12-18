@@ -3,9 +3,11 @@ import CommonHeader from "../src/CommonHeader";
 import useAuthUser from "../src/hook/useAuthUser";
 import Head from "next/head";
 import React from "react";
+import {useRouter} from "next/router";
 import LoginViewModel from "../src/page/_login/LoginViewModel";
 function MyApp({ Component, pageProps }) {
   const isAuth = useAuthUser();
+  const router = useRouter()
   return(
       <>
           <Head>
@@ -15,15 +17,20 @@ function MyApp({ Component, pageProps }) {
           </Head>
 
           <CommonHeader
-            isAuth={isAuth}
+              isAuth={isAuth}
           />
 
           {
               (isAuth)
               ?
+                  <>
+
               <Component {...pageProps} isAuth={isAuth} />
+                  </>
               :
+                  <>
               <LoginViewModel/>
+                  </>
           }
       </>
   )

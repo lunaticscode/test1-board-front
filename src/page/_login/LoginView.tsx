@@ -3,20 +3,38 @@ import React, {useEffect, useState, useCallback} from 'react';
 const InputEmail = ({handleInput}) => {
     return(
         <div>
-            <input name={"email"} type={"text"} onChange={handleInput} />
+            <input
+                name={"email"} type={"text"}
+                placeholder={"Email"}
+                onChange={handleInput}
+            />
         </div>
     )
 }
 const InputPassword = ({handleInput}) => {
     return(
         <div>
-            <input name={"password"} type={"password"} onChange={handleInput} />
+            <input
+                name={"password"} type={"password"}
+                placeholder={"Password"}
+                onChange={handleInput}
+            />
         </div>
     )
 }
 
+const ButtonSubmit = ({handleButton}) => {
+    return (
+        <div>
+            <button onClick={handleButton} >Login</button>
+        </div>
+    )
+}
 
-const LoginView:React.FC = () => {
+interface LoginViewProps {
+    onSubmitLoginForm: Function;
+}
+const LoginView:React.FC<LoginViewProps> = ({onSubmitLoginForm}) => {
     const [inputValues, setInputValues] = useState({email: "", password: ""});
 
     useEffect(() => {
@@ -31,6 +49,9 @@ const LoginView:React.FC = () => {
             console.log(inputValues);
     }, [inputValues])
 
+    const handleButton = () => {
+        onSubmitLoginForm(inputValues);
+    }
     return(
         <>
             <InputEmail
@@ -38,6 +59,9 @@ const LoginView:React.FC = () => {
             />
             <InputPassword
                 handleInput={handleInput}
+            />
+            <ButtonSubmit
+                handleButton={handleButton}
             />
         </>
     )
