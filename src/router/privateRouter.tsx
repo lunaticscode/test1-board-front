@@ -3,6 +3,7 @@ import RouteValuesType from "./routeValuesType";
 import {useRouter} from "next/router";
 
 const routeValues: Array<RouteValuesType> = [
+    {label: "게시판생성", value: "/board"},
     {label: "마이페이지", value: "/mypage"},
     {label: "로그아웃", value: "/logout"}
 ]

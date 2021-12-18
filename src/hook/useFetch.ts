@@ -1,4 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
+
+export interface useFetchResultType {
+    data: Promise<Object>;
+    loading: boolean;
+    error: null | string;
+}
 
 const useFetch = (path, option) => {
     const [data, setData] = useState(null);
@@ -13,7 +19,8 @@ const useFetch = (path, option) => {
             const result = await fetch(`${process.env.API_URL}/${path}`, {
                 ...option,
                 headers: {"Content-Type": "application/json"}
-            }).then( res => res.json() );
+            })
+            .then( res => res.json() )
             console.log(result);
             setData(result);
         }
