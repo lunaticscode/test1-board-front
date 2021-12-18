@@ -10,7 +10,7 @@ const HomeBoardListView:React.FC<HomeBoardListViewProps> = ({ allBoardsData }) =
     return (
         <>
             <div>
-            HomeBoardListView
+                HomeBoardListView
             </div>
         </>
     )
