@@ -1,22 +1,25 @@
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useEffect, useState} from 'react';
 import HomeBoardListView from "./view/HomeBoardListView";
-import useFetch from "../../hook/useFetch";
-import {API_PATH} from "../../api-const";
+import {BOARD_API_FORM} from "../../api-const";
+import {api_fetch} from "../../util/apiFetch";
 
 const HomeViewModel:React.FC = () => {
-    const allBoardsData = useFetch(API_PATH.GET_ALL_BOARDS, {method: 'get'})
 
-    useEffect( () => {
-        init();
-    }, [])
+    const [boards, setBoards] = useState(null);
 
-    const init = () => {
-        console.log('HomeViewModel init .... ');
+    useEffect( () => { init(); }, [])
+
+    const init = async () => {
+        const allBoardsData = await api_fetch(BOARD_API_FORM.GET_ALL_BOARDS.PATH, {method: BOARD_API_FORM.GET_ALL_BOARDS.METHOD})
+        if( !allBoardsData.error ){
+            setBoards(allBoardsData.result);
+        }
     }
+
     return(
         <>
             <HomeBoardListView
-                allBoardsData={allBoardsData}
+                boards={boards}
             />
         </>
     )
