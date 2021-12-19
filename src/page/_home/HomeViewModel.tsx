@@ -16,10 +16,17 @@ const HomeViewModel:React.FC = () => {
         }
     }
 
+    const removeBoardItem = async(id:number) => {
+        const deleteBoardItemResult = await api_fetch(BOARD_API_FORM.DELETE_BOARD.PATH(id), {method: BOARD_API_FORM.DELETE_BOARD.METHOD})
+        console.log(deleteBoardItemResult);
+        init();
+    }
+
     return(
         <>
             <HomeBoardListView
                 boards={boards}
+                removeBoardItem={removeBoardItem}
             />
         </>
     )

@@ -5,20 +5,24 @@ export const API_PATH = {
 }
 
 const MODEL_PATH = {
-    BOARD: "boards/"
+    BOARD: "boards" as string
 }
 
 export const BOARD_API_FORM = {
     GET_ALL_BOARDS: {
-        PATH: MODEL_PATH.BOARD as string,
+        PATH: `${MODEL_PATH.BOARD}` as string,
         METHOD: "get",
     },
     GET_ONE_BOARD: {
-        PATH: (id) => `${MODEL_PATH.BOARD}/${id}/` as string,
+        PATH: (id) => `${MODEL_PATH.BOARD}/${id}` as string,
         METHOD: "get",
     },
     CREATE_BOARD: {
-        PATH: `${MODEL_PATH.BOARD}/create/`,
+        PATH: `${MODEL_PATH.BOARD}/create` as string,
         METHOD: "post",
+    },
+    DELETE_BOARD: {
+        PATH: (id) => `${MODEL_PATH.BOARD}/${id}` as string,
+        METHOD: "delete",
     }
 }

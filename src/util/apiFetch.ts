@@ -3,7 +3,12 @@ export interface apiFetchResultType {
     error: null | string;
 }
 
-export const api_fetch = async (path, option) => {
+interface fetchOptionType {
+    method: string;
+    body?: Object;
+}
+
+export const api_fetch = async (path, option: fetchOptionType) => {
     let result = null;
     let error = null;
 
